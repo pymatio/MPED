@@ -30,6 +30,8 @@ private slots:
     void playPause();
     void addFiles();
     void nextFile();
+    void lastFile();
+    void clear();
     void aboutToFinish();
     void finished();
 

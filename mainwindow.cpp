@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
 
 
 std::string extractFilename( const std::string& path ){
@@ -51,12 +52,16 @@ void MainWindow::playPause()
             setLabel("Paused");
             break;
         case Phonon::PausedState:
-            mediaObject->play();
-            setLabelNowPlaying();
+            if (sources.size() > 0){
+                mediaObject->play();
+                setLabelNowPlaying();
+            }
             break;
         case Phonon::StoppedState:
-            mediaObject->play();
-            setLabelNowPlaying();
+            if (sources.size() > 0){
+                mediaObject->play();
+                setLabelNowPlaying();
+            }
             break;
         case Phonon::LoadingState:
             ui->pushButtonPlay->setChecked(false);
@@ -73,13 +78,12 @@ void MainWindow::playPause()
     ui->pushButtonPlay->setChecked(false);
     if (files.isEmpty())
         return;
-    int index = sources.size();
     foreach (QString string, files) {
             Phonon::MediaSource source(string);
         sources.append(source);
     }
     if (!sources.isEmpty()){
-        metaInformationResolver->setCurrentSource(sources.at(index));
+        metaInformationResolver->setCurrentSource(sources.at(0));
         mediaObject->setCurrentSource(metaInformationResolver->currentSource());
 
     }
@@ -92,9 +96,29 @@ void MainWindow::nextFile()
 
     if (sources.size() > index) {
          mediaObject->stop();
+         mediaObject->clearQueue();
          mediaObject->setCurrentSource(sources.at(index));
          mediaObject->play();
+         setLabelNowPlaying();
      }
+}
+
+void MainWindow::lastFile(){
+    int index = sources.indexOf(mediaObject->currentSource()) - 1;
+
+    if (sources.size() > index && index >= 0) {
+         mediaObject->stop();
+         mediaObject->clearQueue();
+         mediaObject->setCurrentSource(sources.at(index));
+         mediaObject->play();
+         setLabelNowPlaying();
+     }
+}
+
+void MainWindow::clear(){
+    mediaObject->stop();
+    sources.clear();
+    mediaObject->clearQueue();
 }
 
 void MainWindow::aboutToFinish()
@@ -112,7 +136,8 @@ void MainWindow::aboutToFinish()
 
 void MainWindow::finished()
 {
+    std::cout << "hi\n";
 
-         ui->pushButtonPlay->setChecked(false);
+    nextFile();
 
 }

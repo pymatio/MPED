@@ -262,8 +262,8 @@
    <slot>playPause()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>28</x>
-     <y>122</y>
+     <x>25</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
      <x>49</x>
@@ -278,8 +278,8 @@
    <slot>addFiles()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>26</x>
-     <y>46</y>
+     <x>244</x>
+     <y>75</y>
     </hint>
     <hint type="destinationlabel">
      <x>75</x>
@@ -294,12 +294,44 @@
    <slot>nextFile()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>60</x>
-     <y>180</y>
+     <x>204</x>
+     <y>105</y>
     </hint>
     <hint type="destinationlabel">
      <x>10</x>
      <y>185</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>lastFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>73</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>361</x>
+     <y>30</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>338</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>440</x>
+     <y>25</y>
     </hint>
    </hints>
   </connection>
@@ -308,5 +340,7 @@
   <slot>playPause()</slot>
   <slot>addFiles()</slot>
   <slot>nextFile()</slot>
+  <slot>lastFile()</slot>
+  <slot>clear()</slot>
  </slots>
 </ui>

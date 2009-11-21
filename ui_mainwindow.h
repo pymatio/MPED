@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat Nov 21 14:30:16 2009
+** Created: Sat Nov 21 16:01:15 2009
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -187,6 +187,8 @@ public:
         QObject::connect(pushButtonPlay, SIGNAL(clicked()), MainWindowClass, SLOT(playPause()));
         QObject::connect(pushButtonLocation, SIGNAL(clicked()), MainWindowClass, SLOT(addFiles()));
         QObject::connect(pushButtonNext, SIGNAL(clicked()), MainWindowClass, SLOT(nextFile()));
+        QObject::connect(pushButton, SIGNAL(clicked()), MainWindowClass, SLOT(lastFile()));
+        QObject::connect(pushButton_3, SIGNAL(clicked()), MainWindowClass, SLOT(clear()));
 
         QMetaObject::connectSlotsByName(MainWindowClass);
     } // setupUi

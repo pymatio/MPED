@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sat Nov 21 14:30:19 2009
+** Created: Sat Nov 21 16:01:31 2009
 **      by: The Qt Meta Object Compiler version 61 (Qt 4.5.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        2,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   12, // methods
+       7,   12, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,14 +33,17 @@ static const uint qt_meta_data_MainWindow[] = {
       24,   11,   11,   11, 0x08,
       35,   11,   11,   11, 0x08,
       46,   11,   11,   11, 0x08,
-      62,   11,   11,   11, 0x08,
+      57,   11,   11,   11, 0x08,
+      65,   11,   11,   11, 0x08,
+      81,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0playPause()\0addFiles()\0"
-    "nextFile()\0aboutToFinish()\0finished()\0"
+    "nextFile()\0lastFile()\0clear()\0"
+    "aboutToFinish()\0finished()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -71,11 +74,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: playPause(); break;
         case 1: addFiles(); break;
         case 2: nextFile(); break;
-        case 3: aboutToFinish(); break;
-        case 4: finished(); break;
+        case 3: lastFile(); break;
+        case 4: clear(); break;
+        case 5: aboutToFinish(); break;
+        case 6: finished(); break;
         default: ;
         }
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }
