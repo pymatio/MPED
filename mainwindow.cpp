@@ -1,11 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
+std::string extractFilename( const std::string& path ){
+return path.substr( path.find_last_of( '/' ) +1 );
+}
+
 void MainWindow::setLabel(QString s){
     ui->label->setText(s);
 }
 
 void MainWindow::setLabelNowPlaying(){
+    std::string stds = "Now playing: ";
+    stds += extractFilename(mediaObject->currentSource().fileName().toStdString());
+    setLabel(QString::fromStdString(stds));
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -40,15 +48,19 @@ void MainWindow::playPause()
         case Phonon::PlayingState:
             mediaObject->pause();
             ui->pushButtonPlay->setChecked(false);
+            setLabel("Paused");
             break;
         case Phonon::PausedState:
             mediaObject->play();
+            setLabelNowPlaying();
             break;
         case Phonon::StoppedState:
             mediaObject->play();
+            setLabelNowPlaying();
             break;
         case Phonon::LoadingState:
             ui->pushButtonPlay->setChecked(false);
+            setLabel("Paused");
             break;
     }
 }
