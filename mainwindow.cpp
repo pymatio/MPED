@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <algorithm>
+
 
 std::string extractFilename( const std::string& path ){
     return path.substr( path.find_last_of( '/' ) +1 );
@@ -112,14 +114,20 @@ void MainWindow::playPause()
     ui->pushButtonPlay->setChecked(false);
     if (files.isEmpty())
         return;
-    foreach (QString string, files) {
+    std::string mpedfs = mpedf;
+    mpedfs += ".s";
+    std::ofstream file(mpedfs.c_str(), std::ios::app);
+    if (file.is_open()){
+        foreach (QString string, files) {
+            file << string.toStdString() << "\n";
             Phonon::MediaSource source(string);
-        sources.append(source);
-    }
-    if (!sources.isEmpty()){
-        metaInformationResolver->setCurrentSource(sources.at(0));
-        mediaObject->setCurrentSource(metaInformationResolver->currentSource());
+            sources.append(source);
+        }
+        if (!sources.isEmpty()){
+            metaInformationResolver->setCurrentSource(sources.at(0));
+            mediaObject->setCurrentSource(metaInformationResolver->currentSource());
 
+        }
     }
 }
 
@@ -155,7 +163,29 @@ void MainWindow::clear(){
     mediaObject->clearQueue();
 }
 
-void MainWindow::shuffle(){}
+void MainWindow::shuffle(){
+    bool checked;
+    if (!ui->pushButtonShuffle->isChecked()){
+        mediaObject->stop();
+        std::random_shuffle(sources.begin(), sources.end());
+        mediaObject->setCurrentSource(sources.at(0));
+        setLabel("Paused");
+        ui->pushButtonShuffle->setChecked(true);
+        ui->pushButtonPlay->setChecked(false);
+    }else{
+        sources.clear();
+        std::string mpedfs = mpedf;
+        mpedfs += "session.s";
+        std::ifstream file(mpedfs.c_str());
+        if (file.is_open()){
+            char str[2000];
+            while (!file.eof()){
+                file.getline(str, 2000);
+                sources.append(Phonon::MediaSource(QString::fromStdString(std::string(str))));
+            }
+        }
+    }
+}
 
 void MainWindow::aboutToFinish()
 {

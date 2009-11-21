@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat Nov 21 16:10:51 2009
+** Created: Sat Nov 21 17:04:54 2009
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -45,7 +45,7 @@ public:
     QPushButton *pushButtonNext;
     QPushButton *pushButtonLocation;
     QPushButton *pushButton_3;
-    QPushButton *pushButton_2;
+    QPushButton *pushButtonShuffle;
     QListWidget *listWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -152,15 +152,15 @@ public:
 
         horizontalLayout->addWidget(pushButton_3);
 
-        pushButton_2 = new QPushButton(widget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setMinimumSize(QSize(48, 48));
+        pushButtonShuffle = new QPushButton(widget);
+        pushButtonShuffle->setObjectName(QString::fromUtf8("pushButtonShuffle"));
+        pushButtonShuffle->setMinimumSize(QSize(48, 48));
         QIcon icon8;
         icon8.addFile(QString::fromUtf8("../../../../../../usr/share/icons/oxygen/32x32/actions/roll.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_2->setIcon(icon8);
-        pushButton_2->setIconSize(QSize(32, 32));
+        pushButtonShuffle->setIcon(icon8);
+        pushButtonShuffle->setIconSize(QSize(32, 32));
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(pushButtonShuffle);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -197,7 +197,7 @@ public:
         QObject::connect(pushButtonNext, SIGNAL(clicked()), MainWindowClass, SLOT(nextFile()));
         QObject::connect(pushButton, SIGNAL(clicked()), MainWindowClass, SLOT(lastFile()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), MainWindowClass, SLOT(clear()));
-        QObject::connect(pushButton_2, SIGNAL(clicked()), MainWindowClass, SLOT(shuffle()));
+        QObject::connect(pushButtonShuffle, SIGNAL(clicked()), MainWindowClass, SLOT(shuffle()));
 
         QMetaObject::connectSlotsByName(MainWindowClass);
     } // setupUi
@@ -215,7 +215,7 @@ public:
         pushButtonNext->setText(QString());
         pushButtonLocation->setText(QString());
         pushButton_3->setText(QString());
-        pushButton_2->setText(QString());
+        pushButtonShuffle->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindowClass", "File", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("MainWindowClass", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
