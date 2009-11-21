@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'mainwindow.ui'
 **
-** Created: Sat Nov 21 16:01:15 2009
+** Created: Sat Nov 21 16:10:51 2009
 **      by: Qt User Interface Compiler version 4.5.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -34,6 +34,7 @@ public:
     QAction *actionOpen;
     QAction *actionSave_As;
     QAction *actionQuit;
+    QAction *actionAbout;
     QWidget *centralWidget;
     QWidget *widget;
     QVBoxLayout *verticalLayout;
@@ -48,6 +49,7 @@ public:
     QListWidget *listWidget;
     QMenuBar *menuBar;
     QMenu *menuFile;
+    QMenu *menuHelp;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindowClass)
@@ -77,6 +79,8 @@ public:
         QIcon icon2;
         icon2.addFile(QString::fromUtf8("../../../../../../usr/share/icons/oxygen/32x32/actions/application-exit.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionQuit->setIcon(icon2);
+        actionAbout = new QAction(MainWindowClass);
+        actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         centralWidget = new QWidget(MainWindowClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         widget = new QWidget(centralWidget);
@@ -172,16 +176,20 @@ public:
         menuBar->setGeometry(QRect(0, 0, 447, 24));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuHelp = new QMenu(menuBar);
+        menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
         MainWindowClass->setMenuBar(menuBar);
         statusBar = new QStatusBar(MainWindowClass);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindowClass->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuHelp->menuAction());
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionSave_As);
         menuFile->addSeparator();
         menuFile->addAction(actionQuit);
+        menuHelp->addAction(actionAbout);
 
         retranslateUi(MainWindowClass);
         QObject::connect(pushButtonPlay, SIGNAL(clicked()), MainWindowClass, SLOT(playPause()));
@@ -189,6 +197,7 @@ public:
         QObject::connect(pushButtonNext, SIGNAL(clicked()), MainWindowClass, SLOT(nextFile()));
         QObject::connect(pushButton, SIGNAL(clicked()), MainWindowClass, SLOT(lastFile()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), MainWindowClass, SLOT(clear()));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), MainWindowClass, SLOT(shuffle()));
 
         QMetaObject::connectSlotsByName(MainWindowClass);
     } // setupUi
@@ -199,6 +208,7 @@ public:
         actionOpen->setText(QApplication::translate("MainWindowClass", "Open", 0, QApplication::UnicodeUTF8));
         actionSave_As->setText(QApplication::translate("MainWindowClass", "Save As", 0, QApplication::UnicodeUTF8));
         actionQuit->setText(QApplication::translate("MainWindowClass", "Quit", 0, QApplication::UnicodeUTF8));
+        actionAbout->setText(QApplication::translate("MainWindowClass", "About", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindowClass", "Paused", 0, QApplication::UnicodeUTF8));
         pushButtonPlay->setText(QString());
         pushButton->setText(QString());
@@ -207,6 +217,7 @@ public:
         pushButton_3->setText(QString());
         pushButton_2->setText(QString());
         menuFile->setTitle(QApplication::translate("MainWindowClass", "File", 0, QApplication::UnicodeUTF8));
+        menuHelp->setTitle(QApplication::translate("MainWindowClass", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

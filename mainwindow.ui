@@ -221,7 +221,14 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
@@ -249,6 +256,11 @@
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
@@ -335,6 +347,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>shuffle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>401</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>450</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>playPause()</slot>
@@ -342,5 +370,6 @@
   <slot>nextFile()</slot>
   <slot>lastFile()</slot>
   <slot>clear()</slot>
+  <slot>shuffle()</slot>
  </slots>
 </ui>

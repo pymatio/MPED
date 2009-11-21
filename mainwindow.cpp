@@ -4,7 +4,7 @@
 
 
 std::string extractFilename( const std::string& path ){
-return path.substr( path.find_last_of( '/' ) +1 );
+    return path.substr( path.find_last_of( '/' ) +1 );
 }
 
 void MainWindow::setLabel(QString s){
@@ -35,6 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
      ui->setupUi(this);
 
      ui->pushButtonPlay->setCheckable(true);
+
+     home = getenv ("HOME");
+     mpedir = home ;
+     mpedir += "/.mped/";
 }
 
 MainWindow::~MainWindow()
@@ -120,6 +124,8 @@ void MainWindow::clear(){
     sources.clear();
     mediaObject->clearQueue();
 }
+
+void MainWindow::shuffle(){}
 
 void MainWindow::aboutToFinish()
 {

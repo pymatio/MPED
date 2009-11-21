@@ -11,6 +11,8 @@
 
 #include <phonon>
 
+#include <stdlib.h>
+
 namespace Ui
 {
     class MainWindowClass;
@@ -25,6 +27,9 @@ public:
     ~MainWindow();
     void setLabel(QString s);
     void setLabelNowPlaying();
+    void loadSession(std::string filename);
+    char * home;
+    std::string mpedir;
 
 private slots:
     void playPause();
@@ -32,6 +37,7 @@ private slots:
     void nextFile();
     void lastFile();
     void clear();
+    void shuffle();
     void aboutToFinish();
     void finished();
 
