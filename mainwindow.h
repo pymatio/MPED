@@ -28,8 +28,9 @@ public:
     void setLabel(QString s);
     void setLabelNowPlaying();
     void loadSession(std::string filename);
+    void saveSession(std::string filename);
     char * home;
-    std::string mpedir;
+    std::string mpedf;
 
 private slots:
     void playPause();
