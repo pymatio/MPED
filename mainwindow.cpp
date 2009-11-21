@@ -1,6 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+void MainWindow::setLabel(QString s){
+    ui->label->setText(s);
+}
+
+void MainWindow::setLabelNowPlaying(){
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindowClass)
 {
@@ -44,9 +51,6 @@ void MainWindow::playPause()
             ui->pushButtonPlay->setChecked(false);
             break;
     }
-
-    qDebug()<<"playPause";
-    qDebug()<<mediaObject->state();
 }
 
  void MainWindow::addFiles()

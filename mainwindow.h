@@ -23,6 +23,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void setLabel(QString s);
+    void setLabelNowPlaying();
 
 private slots:
     void playPause();
