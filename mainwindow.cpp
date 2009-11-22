@@ -177,6 +177,35 @@ void MainWindow::clear(){
 }
 
 void MainWindow::shuffle(){
+    std::string mpedfs = mpedf;
+    mpedfs += ".s";
+    std::ifstream file(mpedfs.c_str());
+    if (file.is_open()){
+        char str[2000];
+        file.getline(str,2000);
+        if (strcmp(str, sources.at(0).fileName().toStdString().c_str())){
+            std::cout << "hi\n";
+            mediaObject->stop();
+            std::random_shuffle(sources.begin(), sources.end());
+            mediaObject->play();
+            setLabelNowPlaying();
+            ui->pushButtonPlay->setChecked(true);
+            ui->pushButtonShuffle->setChecked(true);
+        }else{
+            mediaObject->stop();
+            sources.clear();
+            sources.append(Phonon::MediaSource(QString::fromStdString(str)));
+            while (!file.eof()){
+                file.getline(str,2000);
+                sources.append(Phonon::MediaSource(QString::fromStdString(str)));
+            }
+            mediaObject->setCurrentSource(sources.at(0));
+            mediaObject->play();
+            setLabelNowPlaying();
+            ui->pushButtonPlay->setChecked(true);
+            ui->pushButtonShuffle->setChecked(true);
+        }
+    }
 }
 
 void MainWindow::aboutToFinish()
