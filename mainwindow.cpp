@@ -27,6 +27,9 @@ void MainWindow::loadSession(std::string filename){
         char line[2000];
         file.getline(line, 2000);
         index = QString::fromStdString(line).toInt();
+        if (index == -1){
+            return;
+        }
         while (!file.eof()){
             file.getline(line, 2000);
             if (std::string(line).length() > 1 && line[0] != ' ' && line[0] != '\n'){
@@ -34,6 +37,10 @@ void MainWindow::loadSession(std::string filename){
             }
         }
     }
+    else{
+        return;
+    }
+    mediaObject->setCurrentSource(sources.at(0));
 }
 
 void MainWindow::saveSession(std::string filename){
@@ -69,7 +76,6 @@ MainWindow::MainWindow(QWidget *parent)
      mpedf = home ;
      mpedf += "/.mped/default.session";
      loadSession(mpedf);
-     mediaObject->setCurrentSource(sources.at(0));
 }
 
 MainWindow::~MainWindow()
@@ -139,6 +145,7 @@ void MainWindow::nextFile()
     if (sources.size() > index) {
          mediaObject->stop();
          mediaObject->clearQueue();
+         mediaObject->clearQueue();
          mediaObject->setCurrentSource(sources.at(index));
          mediaObject->play();
          setLabelNowPlaying();
@@ -150,6 +157,7 @@ void MainWindow::lastFile(){
 
     if (sources.size() > index && index >= 0) {
          mediaObject->stop();
+         mediaObject->clearQueue();
          mediaObject->clearQueue();
          mediaObject->setCurrentSource(sources.at(index));
          mediaObject->play();
