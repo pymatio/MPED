@@ -145,7 +145,7 @@ void MainWindow::nextFile()
     if (sources.size() > index) {
          mediaObject->stop();
          mediaObject->clearQueue();
-         mediaObject->clearQueue();
+         mediaObject->signalsBlocked();
          mediaObject->setCurrentSource(sources.at(index));
          mediaObject->play();
          setLabelNowPlaying();
@@ -158,7 +158,7 @@ void MainWindow::lastFile(){
     if (sources.size() > index && index >= 0) {
          mediaObject->stop();
          mediaObject->clearQueue();
-         mediaObject->clearQueue();
+         mediaObject->signalsBlocked();
          mediaObject->setCurrentSource(sources.at(index));
          mediaObject->play();
          setLabelNowPlaying();
@@ -169,6 +169,11 @@ void MainWindow::clear(){
     mediaObject->stop();
     sources.clear();
     mediaObject->clearQueue();
+    std::string mpedfs = mpedf;
+    mpedfs += ".s";
+    std::ofstream file(mpedfs.c_str());
+    file << "";
+    file.close();
 }
 
 void MainWindow::shuffle(){
