@@ -164,27 +164,6 @@ void MainWindow::clear(){
 }
 
 void MainWindow::shuffle(){
-    bool checked;
-    if (!ui->pushButtonShuffle->isChecked()){
-        mediaObject->stop();
-        std::random_shuffle(sources.begin(), sources.end());
-        mediaObject->setCurrentSource(sources.at(0));
-        setLabel("Paused");
-        ui->pushButtonShuffle->setChecked(true);
-        ui->pushButtonPlay->setChecked(false);
-    }else{
-        sources.clear();
-        std::string mpedfs = mpedf;
-        mpedfs += "session.s";
-        std::ifstream file(mpedfs.c_str());
-        if (file.is_open()){
-            char str[2000];
-            while (!file.eof()){
-                file.getline(str, 2000);
-                sources.append(Phonon::MediaSource(QString::fromStdString(std::string(str))));
-            }
-        }
-    }
 }
 
 void MainWindow::aboutToFinish()
